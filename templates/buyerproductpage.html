@@ -1,0 +1,23 @@
+{% extends 'buyerside.html' %}
+{% load staticfiles %}
+{% block  showproduct %}
+
+<div class="w3-container">
+  {% for i in pro %}
+    <div class="w3-col l3 s6">
+      <div class="w3-container">
+        <div class="w3-display-container">
+          <img src="{{ i.product_img.url }}" style="width:150px;height:150px" alt="img">
+          <!--<span class="w3-tag w3-display-topleft">Sale</span>-->
+          <div class="w3-display-middle w3-display-hover">
+            <a href="{% url 'buyer:proddetails' id=i.id %}"><button class="w3-button w3-black">View Product<i class="fa fa-shopping-cart"></i></button></a>
+          </div>
+        </div>
+        <p>{{ i.product_name }}<br><b class="w3-text">Rs {{ i.product_price }}</b></p>
+        <!--<p>Vintage Skinny Jeans<br><b class="w3-text-red">$14.99</b></p>-->
+      </div>
+    </div>
+  {% endfor %}
+
+</div>
+{% endblock %}

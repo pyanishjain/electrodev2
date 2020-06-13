@@ -1,0 +1,108 @@
+{% extends 'base.html' %}
+
+{% block mainblock %}
+
+
+
+ <!-- shop page main wrapper start -->
+ <div class="main-wrapper pt-35">
+  <div class="container">
+      <div class="row">
+          <div class="col-lg-12">
+               <div class="product-shop-main-wrapper mb-50">
+                   <div class="shop-baner-img mb-70">
+                       <a href="#"><img src="assets/img/banner/category-image.jpg" alt=""></a>
+                   </div>
+                   <div class="shop-top-bar mb-30">
+                       <div class="row">
+                         
+                        
+                           <div class="col-lg-12" >
+                              
+                                   <div class="product-short">
+                                       <p>Address: </p>
+                                       <select class="nice-select" name="sortby">
+                                        {% for i in address %}
+                                        <option value="{{ i.houseno }} , {{ i.street }} , {{ i.ward }} , {{ i.city }} , {{ i.district }} , {{ i.pin }} , {{ i.state }}">{{ i.houseno }} , {{ i.street }} , {{ i.ward }} , {{ i.city }} , {{ i.district }} , {{ i.pin }} , {{ i.state }}</option>
+                                        {% endfor %}
+                                       </select>
+                                   </div> 
+                               </div>
+                           </div>
+                       </div>
+                       
+                   </div>
+                   <div class="shop-product-wrap list row">
+                       <div class="col-lg-12 col-md-4 col-sm-6">
+                        {% for i in obj %}
+                           <div class="sinrato-list-item mb-30">
+                               <div class="sinrato-thumb">
+                                   <a href="product-details.html">
+                                       <img src="assets/img/product/product-12.jpg" class="pri-img" alt="">
+                                       <img src="assets/img/product/product-9.jpg" class="sec-img" alt="">
+                                   </a>
+                                   <div class="box-label">
+                                       <div class="label-product label_sale">
+                                           <span>-10%</span>
+                                       </div>
+                                   </div>
+                               </div>
+                               <div class="sinrato-list-item-content">
+                                   <div class="manufacture-product">
+                                       <span><a href="#">{{ i.prodcartid.product_name }}n</a></span>
+                                   </div>
+                                   <div class="sinrato-product-name">
+                                       <h4><a href="product-details.html">Beats EP Wired Headphone-Black</a></h4>
+                                   </div>
+                                   <div class="sinrato-ratings mb-15">
+                                       <span><i class="fa fa-star"></i></span>
+                                       <span><i class="fa fa-star"></i></span>
+                                       <span><i class="fa fa-star"></i></span>
+                                       <span><i class="fa fa-star"></i></span>
+                                       <span><i class="fa fa-star"></i></span>
+                                   </div>
+                                   <div class="sinrato-product-des">
+                                       <p>{{ i.prodcartid.product_desc }}</p>
+                                   </div>
+                                   <select  name="selc" style="width:80%;border:2px solid orange;height:35px;" id="selone" required>
+                                    <option value="1">1</option>
+                                    <option value="2">2</option>
+                                    <option value="3">3</option>
+                                    <option value="4">4</option>
+                                    <option value="5">5</option>
+                                  </select>
+                               </div>
+                               <div class="sinrato-box-action">
+                                   <div class="price-box">
+                                       <span class="regular-price"><span class="special-price">{{ i.prodcartid.product_price }}</span></span>
+                                       <span class="old-price"><del>{{ i.prodcartid.product_price }}</del></span>
+                                   </div>
+                                   <button class="btn-cart" type="button">add to cart</button>
+                                   <div class="action-links sinrat-list-icon">
+                                       <a href="#" title="Wishlist"><i class="lnr lnr-heart"></i></a>
+                                       <a href="#" title="Compare"><i class="lnr lnr-sync"></i></a>
+                                       <a href="#" title="Quick view" data-target="#quickk_view" data-toggle="modal"><i class="lnr lnr-magnifier"></i></a>
+                                   </div>
+                               </div>
+                           </div> <!-- end single list item -->
+
+                        {% endfor %}   
+                       </div>
+                    
+                    
+                   
+                 
+                 
+                     
+                   </div>
+                 
+               </div>
+          </div>
+         
+      </div>
+  </div>
+</div>
+<!-- shop page main wrapper end -->
+
+
+{% endblock %}

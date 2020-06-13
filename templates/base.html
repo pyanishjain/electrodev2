@@ -1,0 +1,81 @@
+<!-- <!DOCTYPE html>
+<html lang="en">
+{% load staticfiles %}
+<head>
+
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <meta name="description" content="">
+  <meta name="author" content="">
+
+  <title>Ecommerce App</title>
+
+  
+</head>
+
+<body> -->
+
+
+
+  <!-- Navigation -->
+  {% block navigation %}
+ 
+  {% include 'navbar.html' %}
+ 
+
+  {% endblock %}
+  
+  {% block slider %}
+
+  {% if request.path != '/' %}
+
+  {% else %}
+  {% include 'slider.html' %}
+
+  {% endif %}
+
+  
+  
+  {% endblock %}
+
+
+  <!-- Page Content -->
+ 
+
+    <!-- Jumbotron Header -->
+    {% block mainblock %}
+
+  
+
+    {% endblock %}
+
+
+
+
+    {% block sellernotifications %}
+    {% endblock %}
+
+    {% block createnotifications %}
+    {% endblock %}
+
+    {% block sellerorders %}
+    {% endblock %}
+
+
+  <!-- /.container -->
+
+
+
+
+
+  <!-- all js include here -->
+  <script src="{% static 'sinrato/assets/js/vendor/jquery-1.12.4.min.js' %}"></script>
+  <script src="{% static 'sinrato/assets/js/popper.min.js' %}"></script>
+  <script src="{% static 'sinrato/assets/js/bootstrap.min.js' %}"></script>
+  <script src="{% static 'sinrato/assets/js/plugins.js' %}"></script>
+  <script src="{% static 'sinrato/assets/js/ajax-mail.js' %}"></script>
+  <script src="{% static 'sinrato/assets/js/main.js' %}"></script>
+
+</body>
+
+</html>

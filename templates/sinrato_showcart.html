@@ -1,0 +1,114 @@
+{% extends 'base.html' %}
+
+{% block mainblock %}
+
+<div class="shopping-cart-wrapper pb-70">
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-12 col-sm-12 col-md-12 col-lg-12">
+                <main id="primary" class="site-main">
+                    <div class="shopping-cart">
+                        <div class="row">
+                            <div class="col-12 col-sm-12 col-md-12 col-lg-12">
+                                <div class="section-title">
+                                    <h3>Shopping Cart</h3>
+                                </div>
+                            
+                                    <div class="table-responsive">
+                                        <table class="table table-bordered">
+                                            <thead>
+                                                <tr>
+                                                    <td>Image</td>
+                                                    <td>Product Name</td>
+                                                   
+                                                    <td>Quantity</td>
+                                                   
+                                                </tr>
+                                            </thead>
+                                            <tbody>
+                                                {% for i in cart %}
+                                                <tr>
+                                                    <td>
+                                                        <a href="product-details.html"><img src="{{ i.prodcartid.product_img.url }}" alt="Cart Product Image" title="Compete Track Tote" class="img-thumbnail"></a>
+                                                    </td>
+
+                                                    <td>
+                                                        <a href="product-details.html">{{ i.prodcartid.product_name }}</a>
+                                                        <span>Rs {{ i.prodcartid.product_price }}</span>
+                                                       
+                                                    </td>
+=
+
+                                                    <td>
+                                                       
+
+
+
+
+                                                        
+                                            
+                                                   
+
+                                                    
+
+                                              
+
+
+                                                    <form method="post"  action="{% url 'buyer:removecart' id=i.id %}">
+                                                        {% csrf_token %}
+                                                        <input type="submit" name="Remove" value="Remove" class="btn btn-danger" style="width:180px;">
+                                                      </form>
+                                                
+                                                            
+  
+                                                              
+
+                                                        
+                                                        
+                                                    </td>
+                                              
+                                                </tr>
+                                                {% endfor %}
+                                            </tbody>
+                                        </table>
+                                    </div>
+                             
+
+
+                                <div class="cart-amount-wrapper">
+                                    <div class="row">
+                                        <div class="col-12 col-sm-12 col-md-4 offset-md-8">
+                                            <table class="table table-bordered">
+                                                <tbody>
+                                                    <tr>
+                                                        <td>
+                                                           
+                                                            <a href="{% url 'buyer:buyallproduct' %}"><input type="submit" value="Buy all" name="All" class="w3-button w3-black w3-margin-left" class="btn btn-primary" style="padding:3px;width:180px;"></a>
+             
+                                                        </td>
+
+                                                    </tr>
+                                                    <tr>
+                                                        <td><strong>Total:</strong></td>
+                                                        <td><span class="color-primary">Rs {{ total }}</span></td>
+                                                    </tr>
+                                                </tbody>
+                                            </table>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="cart-button-wrapper d-flex justify-content-between mt-4">
+                                    <a href="shop-grid-left-sidebar.html" class="btn btn-secondary">Continue Shopping</a>
+                                    <a href="checkout.html" class="btn btn-secondary dark align-self-end">Checkout</a>
+                                </div>
+                            </div>
+                        </div>
+                    </div> <!-- end of shopping-cart -->
+                </main> <!-- end of #primary -->
+            </div>
+        </div> <!-- end of row -->
+    </div> <!-- end of container -->
+</div>
+
+{% endblock %}
