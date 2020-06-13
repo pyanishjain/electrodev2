@@ -14,17 +14,23 @@
         <div class="section-title product-spacing hm-11">
             <h3><span>our</span> {{c}}</h3>
             <div class="boxx-tab">
-                <!-- <ul class="nav my-tab">
+                <ul class="nav my-tab">
                     <li>
-                        <a class="active" data-toggle="tab" href="#one">Camera, Photo & Video</a>
-                    </li>
-                    <li>
+                    <form action="{% url 'buyer:buyerapp' %}" method="post" enctype="multipart/form-data">
+                        {% csrf_token %}
+                        <a href="{% url 'buyer:buyerapp' %}" style="text-decoration:none;"><input type="submit" name="ser" value="{{ c }}" class="w3-bar-item w3-button" style="width: 100px;"></a>
+                    </form>
+                </li>
+                    
+
+
+                    <!-- <li>
                         <a data-toggle="tab" href="#two">Audio & Home Theater</a>
                     </li>
                     <li>
                         <a data-toggle="tab" href="#three">Cellphones & Accessories</a>
-                    </li>
-                </ul> -->
+                    </li> -->
+                </ul>
             </div>
         </div>
 

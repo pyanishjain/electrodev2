@@ -1,0 +1,63 @@
+{% extends 'base.html' %}
+
+{% block mainblock %}
+
+<br>
+<div class="container">
+<div class="shop-product-wrap list row">
+    <div class="col-lg-3 col-md-4 col-sm-6">
+  
+
+    {% for i  in pro %}
+
+    <div class="sinrato-list-item mb-30">
+        <div class="sinrato-thumb">
+            <a href="{% url 'buyer:proddetails' id=i.id %}">
+                <img src="{{ i.product_img.url }}" class="pri-img" alt="">
+                <img src="{{ i.product_img.url }}" class="sec-img" alt="">
+            </a>
+            <div class="box-label">
+                <div class="label-product label_sale">
+                    <span>-10%</span>
+                </div>
+            </div>
+        </div>
+        <div class="sinrato-list-item-content">
+            <div class="manufacture-product">
+                <span><a href="#">Canon</a></span>
+            </div>
+            <div class="sinrato-product-name">
+                <h4><a href="{% url 'buyer:proddetails' id=i.id %}">{{ i.product_name }}</a></h4>
+            </div>
+            <div class="sinrato-ratings mb-15">
+                <span><i class="fa fa-star"></i></span>
+                <span><i class="fa fa-star"></i></span>
+                <span><i class="fa fa-star"></i></span>
+                <span><i class="fa fa-star"></i></span>
+                <span><i class="fa fa-star"></i></span>
+            </div>
+            <div class="sinrato-product-des">
+                <p>Rs {{ i.product_desc }}</p>
+            </div>
+        </div>
+        <div class="sinrato-box-action">
+            <div class="price-box">
+                <span class="regular-price"><span class="special-price">Rs {{ i.product_price }}</span></span>
+                <span class="old-price"><del>Rs {{ i.product_price }}</del></span>
+            </div>
+            <!-- <a class="btn-cart" type="button" href="{%  url 'buyer:cartitems' %}">add to cart</a> -->
+            <div class="action-links sinrat-list-icon">
+                <a href="#" title="Wishlist"><i class="lnr lnr-heart"></i></a>
+                <a href="#" title="Compare"><i class="lnr lnr-sync"></i></a>
+                <a href="#" title="Quick view" data-target="#quickk_view" data-toggle="modal"><i class="lnr lnr-magnifier"></i></a>
+            </div>
+        </div>
+    </div> <!-- end single list item -->
+
+    {% endfor %}
+    
+</div>
+
+</div>
+</div>
+{% endblock %}

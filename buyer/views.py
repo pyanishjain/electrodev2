@@ -9,7 +9,6 @@ from django.contrib.auth.models import User
 from ecommerce.models import userNotification ,buyerorder
 from django.utils import timezone
 import time
-
 from django.contrib import auth
 
 
@@ -26,7 +25,6 @@ from hashlib import sha512
 def buyerapp(request):
     count=0
     p=Products.objects.filter(product_avail__gt=0)
-    
     for i in p:
         count+=1
     req='All'
@@ -38,9 +36,26 @@ def buyerapp(request):
         for i in p:
             count+=1
     # return render(request,'buyerproductpage.html',{'pro':p,'cat':c,'count':count,'req':req})
-    return render(request,'product_index.html',{'pro':p,'cat':c,'count':count,'req':req})
-    
+    if  req !='All':
+        return render(request,'category_items.html',{'pro':p,'cat':c,'count':count,'req':req})
+    else:
+        return render(request,'product_index.html',{'pro':p,'cat':c,'count':count,'req':req})
 
+
+
+def searchView(request):
+    query = request.GET['query']
+    name=Products.objects.filter(product_name__icontains=query)
+    cate=Products.objects.filter(category__cat=query)
+    subcat=Products.objects.filter(subcategory__subcat=query)
+
+
+    p=name.union(cate,subcat)
+    # return HttpResponse(result)
+    return render(request,'category_items.html',{'pro':p})
+    
+    # return render(request, 'search.html')
+    
 # @login_required
 def proddetails(request,id):
     p=Products.objects.get(id=id)
@@ -130,7 +145,6 @@ def checkout(request,id):
         buyerobj = UserProfile.objects.get(user__id = request.user.id)
         now = timezone.now()
         temp = prodobj.product_avail - int(qty[0])
-        print("temp%%%%%%%%%555",temp)
         if temp < 0:
             HttpResponse("<h4>Oopse ! Out of Stock</h4>")
             time.sleep(5)
@@ -232,6 +246,9 @@ payment=''
 def buyallproduct(request):
     obj = shoppcart.objects.filter(buyerid = request.user.id)
     uobj = UserProfile.objects.get(user = request.user)
+
+    if len(obj)==0:
+        return redirect('buyer:buyerapp')
     
     aobj = userAddress.objects.filter(uaddid = uobj)
     # return HttpResponse(aobj)
@@ -259,43 +276,24 @@ def checkoutallprod(request):
     dic = {}
     add = address
     pay = payment
-
-    # re='in checkoutall'+str(address)+str(quantity)+str(ids) 
-    # return HttpResponse(re)
-
-
-
     qty = list(map(int,quantity))
-  
-
-
-
-
-
     obj = shoppcart.objects.filter(buyerid = request.user.id)
-
-
     j = 0
     total = 0
     for i in obj:
         total = total + i.prodcartid.product_price * qty[j]
         dic[i] = qty[j]
         j = j+1
-
-
-
     buyerid = UserProfile.objects.get(user =  request.user.id)
     if request.method == 'POST':
         now = timezone.now()
         j = 0
         for i in obj:
-            
             prodobj = i.prodcartid
             buyerobj = UserProfile.objects.get(user__id = request.user.id)
             ob = buyerorder(buyerid = buyerid,prodcartid=prodobj.id,productname=prodobj.product_name,productprice=prodobj.product_price,productqty=qty[j],buyermobile=buyerobj.mobile,buyeraddress=add[0],productimage=prodobj.product_img,status="ordered",tim=now)
             ob.save()
             j = j+1
             shoppcart.objects.filter(buyerid=request.user).filter(prodcartid=prodobj.id).delete()
-
         return redirect('buyer:order')
     return render(request,'checkoutallprod.html',{'product':dic,'address':add[0],'payment':pay[0],'total':total})

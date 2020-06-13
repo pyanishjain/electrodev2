@@ -1,6 +1,7 @@
-{% extends 'history.html' %}
+{% extends 'base.html' %}
 
-{% block order %}
+{% block mainblock %}
+{% include 'customcss.html' %}
 <div class="w3-container">
 <h3>Order history</h3>
 {% for i in obj %}
@@ -8,7 +9,7 @@
   <div class="w3-container w3-padding w3-border">
     <div class="w3-left">
       <p><b>{{ i.productname }}</b></p>
-      <img src="{{ i.productimage.url }}" alt="img" height="100" width="100">
+      <img src="{{ i.productimage.url }}" alt="img" height="150" width="150">
     </div>
     <div class="w3-right">
       <table class="w3-table">
@@ -49,12 +50,12 @@
         </tr>
       </table>
     </div>
-    <div class="w3-container">
+    <!-- <div class="w3-container">
       <a href="#"><button type="button" name="button" class="w3-black">Remove order</button></a>
       {% if i.status != "delivered" %}
       <a href="#"><button type="button" name="button" class="w3-black">Cancel order</button></a>
       {% endif %}
-    </div>
+    </div> -->
   </div>
   <br>
 {% endfor %}

@@ -92,7 +92,7 @@
                     </div>
                     <div class="col-lg-6 col-md-12 col-12 order-sm-last">
                         <div class="header-middle-inner">
-                            <form action="https://demo.hasthemes.com/-preview//method">
+                            <form  action="{% url 'buyer:search' %}">
                                 <div class="top-cat hm1">
                                     <div class="search-form">
                                          <select>
@@ -115,8 +115,8 @@
                                         </select> 
                                     </div>
                                 </div>
-                                <input type="text" class="top-cat-field" placeholder="Search entire store here">
-                                <input type="button" class="top-search-btn" value="Search">
+                                <input name='query' type="text" class="top-cat-field" placeholder="Search entire store here">
+                                <input type="submit" class="top-search-btn" value="Search">
                             </form>
                         </div>
                     </div>
@@ -131,42 +131,7 @@
                                 </li>
                                 <li class="my-cart">
                                     <a class="ha-toggle" href="{% url 'buyer:cartitems' %}"><span class="lnr lnr-cart"></span><span class="count">2</span>my cart</a>
-                                    <ul class="mini-cart-drop-down ha-dropdown">
-                                        <li class="mb-30">
-                                            <div class="cart-img">
-                                                <a href="product-details.html"><img alt="" src="{% static 'sinrato/assets/img/cart/cart-1.jpg"></a>
-                                            </div>
-                                            <div class="cart-info">
-                                                <h4><a href="product-details.html">Koss Porta Pro On Ear  Headphones </a></h4>
-                                                <span> <span>1 x </span>£165.00</span>
-                                            </div>
-                                            <div class="del-icon">
-                                                <i class="fa fa-times-circle"></i>
-                                            </div>
-                                        </li>
-                                        <li>
-                                            <div class="subtotal-text">Sub-total: </div>
-                                            <div class="subtotal-price">£48.94</div>
-                                        </li>
-                                        <li>
-                                            <div class="subtotal-text">Eco Tax (-2.00): </div>
-                                            <div class="subtotal-price">£1.51</div>
-                                        </li>
-                                        <li>
-                                            <div class="subtotal-text">Vat (20%): </div>
-                                            <div class="subtotal-price">£9.79</div>
-                                        </li>
-                                        <li>
-                                            <div class="subtotal-text">Total: </div>
-                                            <div class="subtotal-price"><span>£60.24</span></div>
-                                        </li>
-                                        <li class="mt-30">
-                                            <a class="cart-button" href="cart.html">view cart</a>
-                                        </li>
-                                        <li>
-                                            <a class="cart-button" href="checkout.html">checkout</a>
-                                        </li>
-                                    </ul>
+                                    
                                 </li>
                             </ul>
                         </div>

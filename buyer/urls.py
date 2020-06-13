@@ -19,4 +19,7 @@ urlpatterns=[
     path('checkout/<int:id>/',views.checkout,name='checkout'),
     path('buyallproduct/',views.buyallproduct,name='buyallproduct'),
     path('checkoutallprod/',views.checkoutallprod,name='checkoutallprod'),
+
+    path('search/',views.searchView,name='search'),
+
 ]
